@@ -17,8 +17,8 @@ private:
     int nodes{};
 
 public:
-    LinkedList() : head(nullptr), nodes(0) {}
     ~LinkedList() {}
+    LinkedList() : head(nullptr), nodes(0) {}
 
     T front() { return head->value; }
 
@@ -60,6 +60,51 @@ public:
             temp->next = newNode;
         }
         nodes++;
+    }
+
+    bool empty() { return !head; }
+
+    T pop_front()
+    {
+        if (empty())
+        {
+            return T{};
+        }
+        auto newHead = head->next;
+        T res = head->value;
+        delete head;
+        nodes--;
+        head = newHead;
+        return res;
+    }
+
+    T pop_back()
+    {
+        if (empty())
+        {
+            return T{};
+        }
+
+        if (!head->next)
+        {
+            T res = head->value;
+            delete head;
+            head = nullptr;
+            --nodes;
+            return res;
+        }
+
+        auto it = head;
+        while (it->next->next != nullptr)
+        {
+            it = it->next;
+        }
+        T res = it->next->value;
+        delete it->next;
+        it->next = nullptr;
+        --nodes;
+
+        return res;
     }
 
     int size() { return nodes; }
@@ -145,8 +190,6 @@ public:
         head = mergeSort(head);
     }
 
-    bool is_empty() { return !head; }
-
     T &operator<<(int pos)
     {
         auto *temp = head;
@@ -195,6 +238,12 @@ int main()
 
     head.reverse();
     head.display();
-    
+
+    cout << head.pop_back() << endl;
+    head.display();
+
+    cout << head.pop_front() << endl;
+    head.display();
+
     return 0;
 }
