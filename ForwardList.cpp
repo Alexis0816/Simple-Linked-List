@@ -1,12 +1,9 @@
-#include <iostream>
-#include "SimpleLinkedList.hpp"
-using namespace std;
+#include "ForwardList.hpp"
 
 // testeo
-
 int main()
 {
-    LinkedList<int> head;
+    ForwardList<int> head;
     head.push_front(10);
     head.push_front(20);
     head.display();

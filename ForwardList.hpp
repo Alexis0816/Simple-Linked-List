@@ -1,3 +1,6 @@
+#include <iostream>
+using namespace std;
+
 template <class T>
 class Node
 {
@@ -7,15 +10,15 @@ public:
 };
 
 template <class T>
-class LinkedList
+class ForwardList
 {
 private:
     Node<T> *head;
     int nodes{};
 
 public:
-    ~LinkedList() {}
-    LinkedList() : head(nullptr), nodes(0) {}
+    ~ForwardList() {}
+    ForwardList() : head(nullptr), nodes(0) {}
 
     T front() { return head->value; }
 
